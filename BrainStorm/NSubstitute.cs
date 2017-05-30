@@ -30,9 +30,9 @@ namespace BrainStormTest
             _userRepository
                 .GetById(Arg.Is<int>(i => i >= 10))
                 .Returns(new User { HasActivatedNotification = false });
-            _userRepository
-                    .GetById(Arg.Is<int>(i => i < 0))
-                    .Returns(user => { throw new InvalidUserIdException(); });
+            //_userRepository
+            //        .GetById(Arg.Is<int>(i => i < 0))
+            //        .Returns(user => { throw new InvalidUserIdException(); });
            
         }
 
