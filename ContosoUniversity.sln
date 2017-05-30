@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.6
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContosoUniversity", "ContosoUniversity\ContosoUniversity.csproj", "{1D32D039-B2A6-46D1-9685-24CD9EE0399A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestBrainStorm", "UnitTestBrainStorm\UnitTestBrainStorm.csproj", "{12E3C44E-D732-4D89-8489-CAC0D158DEB7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrainStormTest", "BrainStorm\BrainStormTest.csproj", "{060868B0-6DA5-4AD4-BB7E-C7225FBEFE64}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1D32D039-B2A6-46D1-9685-24CD9EE0399A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D32D039-B2A6-46D1-9685-24CD9EE0399A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D32D039-B2A6-46D1-9685-24CD9EE0399A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D32D039-B2A6-46D1-9685-24CD9EE0399A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12E3C44E-D732-4D89-8489-CAC0D158DEB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12E3C44E-D732-4D89-8489-CAC0D158DEB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12E3C44E-D732-4D89-8489-CAC0D158DEB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12E3C44E-D732-4D89-8489-CAC0D158DEB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{060868B0-6DA5-4AD4-BB7E-C7225FBEFE64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{060868B0-6DA5-4AD4-BB7E-C7225FBEFE64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{060868B0-6DA5-4AD4-BB7E-C7225FBEFE64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{060868B0-6DA5-4AD4-BB7E-C7225FBEFE64}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
