@@ -1,0 +1,8 @@
+version: '2'
+
+services:
+  brainstormtest:
+    image: brainstormtest
+    build:
+      context: ./BrainStorm
+      dockerfile: Dockerfile

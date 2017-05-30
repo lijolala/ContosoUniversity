@@ -3,6 +3,10 @@ using Xunit;
 using UnitTestBrainStorm;
 using NSubstitute;
 using static UnitTestBrainStorm.Customer;
+using GenFu;
+using System.Collections.Generic;
+using System.Linq;
+using GenFu.ValueGenerators.Internet;
 
 namespace BrainStormTest
 {
@@ -84,20 +88,7 @@ namespace BrainStormTest
             Assert.Equal(99, calculator.Add(0, 0));
         }
 
-        //[Fact(DisplayName = "Testing for NSubstitute - Return from function")]
-        //public void TestNSubstituteReturnFromFn()
-        //{
-        //    calculator
-        //        .Add(Arg.Any<int>(), Arg.Any<int>())
-        //        .Returns(x => (int)x[0] + (int)x[1]);
-
-
-        //    Assert.True(calculator.Add(1, 2).Equals(2));
-        //    Assert.True(calculator.Add(20, 30).Equals(50));
-        //    Assert.True(calculator.Add(-73, 9348).Equals(9275));
-
-        //}
-
+   
         [Fact(DisplayName = "Testing for NSubstitute -Multiple return values")]
         public void TestNSubstituteMultipleReturnValues()
         {
@@ -149,5 +140,34 @@ namespace BrainStormTest
                 Assert.Equal("John Smith", fullName);
             }
         }
+
+        [Fact(DisplayName = "Testing with moc data")]
+        public void TestWithMocData()
+        {
+
+            var leaders = A.ListOf<Leader>(20);
+            var meetings = A.ListOf<Meeting>(100);
+            //Arrange
+            A.Configure<UserGroup>()
+                .Fill(x => x.Members).WithinRange(10, 250)
+                .Fill(x => x.Name).AsMusicGenreName()
+                .Fill(x => x.Description).AsMusicGenreDescription()
+                .Fill(x => x.Founded).AsPastDate()
+                .Fill(x => x.Leaders);
+
+            var userGroup = A.New<UserGroup>();
+
+            var usergroups = A.ListOf<UserGroup>(20);
+
+            //Act
+
+
+            //Assert
+
+
+
+        }
+     
+
     }
 }
