@@ -42,7 +42,10 @@ namespace UnitTestBrainStorm
         {
             this.command = command;
         }
-        public void DoSomething() { command.Execute(); }
+        public void DoSomething()
+        {
+            command.Execute();
+        }
         public void DontDoAnything() { }
     }
 

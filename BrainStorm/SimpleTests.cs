@@ -7,6 +7,7 @@ using GenFu;
 using System.Collections.Generic;
 using System.Linq;
 using GenFu.ValueGenerators.Internet;
+using FluentAssertions;
 
 namespace BrainStormTest
 {
@@ -14,13 +15,14 @@ namespace BrainStormTest
    
     public class SimpleTests
     {
-        ICalculator calculator = Substitute.For<ICalculator>();
+        
 
+        #region --------   xUnit -------------
         [Fact(DisplayName = "Passing Test case")]
         public void Test1()
         {
             // Arrange 
-         
+
             UnitTestBrainStorm.Program test1 = new Program();
             int result;
 
@@ -44,14 +46,41 @@ namespace BrainStormTest
 
             //Assert
             Assert.NotEqual(12, result);
+
         }
+
+        #endregion
+
+        #region --------   FluentAssertions -------------
+        [Fact(DisplayName = "Fluent Assertions ")]
+        public void StringTest()
+        {
+            //Arrange
+
+            //Act
+
+            //Assert
+
+            string actual = "ABCDEFGHI";
+            actual.Should(). StartWith("AB")
+                .And.EndWith("HI")
+                .And.Contain("EF")
+                .And.HaveLength(9);
+
+
+        }
+        #endregion
+
+        #region --------   NSubstitute -------------
+
+        ICalculator calculator = Substitute.For<ICalculator>();
 
         [Fact(DisplayName = "Testing for NSubstitute")]
         public void TestNSubstituteReturnSingle()
         {
             // Arrange 
-         
-          calculator.Add(3, 4).Returns(7);
+
+           var cals =  calculator.Add(3, 4).Returns(7);
             Assert.Equal(calculator.Add(3, 4), 7);
             Assert.NotEqual(calculator.Add(3, 4), 9);
 
@@ -88,7 +117,7 @@ namespace BrainStormTest
             Assert.Equal(99, calculator.Add(0, 0));
         }
 
-   
+
         [Fact(DisplayName = "Testing for NSubstitute -Multiple return values")]
         public void TestNSubstituteMultipleReturnValues()
         {
@@ -120,11 +149,11 @@ namespace BrainStormTest
             something.DoSomething();
             //Assert
             command.Received().Execute();
-            //command.DidNotReceive().Execute();
+            
 
         }
 
-        
+
         public class CustomerServiceTests
         {
             [Fact(DisplayName = " Will_Return_Customer_FullName")]
@@ -132,28 +161,35 @@ namespace BrainStormTest
             {
                 ICustomerRepository customerRepository = Substitute.For<ICustomerRepository>();
                 customerRepository.GetCustomerById(1).Returns(new Customer() { FirstName = "John", LastName = "Smith" });
+                customerRepository.GetInitialName().Returns("my initial name");
 
                 CustomerService customerService = new CustomerService(customerRepository);
 
+                //  var InitialName = Substitute.For<Type<>
+
                 string fullName = customerService.GetFullName(1);
 
-                Assert.Equal("John Smith", fullName);
+                Assert.Equal("my initial name John Smith", fullName);
             }
         }
+        #endregion
 
-        [Fact(DisplayName = "Testing with moc data")]
+        #region--------   GenFu -------------------
+
+        [Fact(DisplayName = "Testing with mock data")]
         public void TestWithMocData()
         {
 
             var leaders = A.ListOf<Leader>(20);
             var meetings = A.ListOf<Meeting>(100);
+            Random random = new Random();
             //Arrange
             A.Configure<UserGroup>()
                 .Fill(x => x.Members).WithinRange(10, 250)
                 .Fill(x => x.Name).AsMusicGenreName()
                 .Fill(x => x.Description).AsMusicGenreDescription()
                 .Fill(x => x.Founded).AsPastDate()
-                .Fill(x => x.Leaders);
+                .Fill(x => x.Leaders, leaders.GetRange(3,7));
 
             var userGroup = A.New<UserGroup>();
 
@@ -168,6 +204,9 @@ namespace BrainStormTest
 
         }
      
+        #endregion
+
+
 
     }
 }

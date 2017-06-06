@@ -10,6 +10,7 @@ namespace UnitTestBrainStorm
     public interface ICustomerRepository
     {
         Customer GetCustomerById(int customerId);
+        string GetInitialName();
     }
 
     public class Customer
@@ -20,20 +21,15 @@ namespace UnitTestBrainStorm
 
         List<Customer> listCustomers = new List<Customer>();
 
-
-        //public Customer()
-        //{
-        //    listCustomers.Add(new Customer { ID = 1, FirstName = "Lijo", LastName = "jolly" });
-        //    listCustomers.Add(new Customer { ID = 1, FirstName = "Thomas", LastName = "Coook" });
-        //    listCustomers.Add(new Customer { ID = 1, FirstName = "Alwa", LastName = "Edison" });
-
-        //}
-
         public Customer GetCustomerById(int id)
         {
             return listCustomers.First(x => x.ID == id);
         }
 
+        public string GetInitialName()
+        {
+            return "Append this before";
+        }
 
         public class CustomerService
         {
@@ -47,8 +43,9 @@ namespace UnitTestBrainStorm
             public string GetFullName(int customerId)
             {
                 Customer customer = this._customerRepository.GetCustomerById(customerId);
-                return string.Format("{0} {1}", customer.FirstName, customer.LastName);
+                return string.Format("{0} {1} {2}", this._customerRepository.GetInitialName(), customer.FirstName, customer.LastName);
             }
+
         }
     }
 }
